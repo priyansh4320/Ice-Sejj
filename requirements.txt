@@ -8,3 +8,8 @@ scikit_learn==1.2.2
 streamlit==1.22.0
 sumy==0.11.0
 transformers==4.28.1
+nltk.download('averaged_perceptron_tagger')
+nltk.download("maxent_ne_chunker")
+nltk.download('words')
+tensorflow==2.0
+torch
