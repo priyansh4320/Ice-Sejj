@@ -4,7 +4,8 @@ import numpy as np
 from transformers import pipeline
 import nltk
 from nltk import word_tokenize, ne_chunk , pos_tag
-nltk.download('averaged_perceptron_tagger', download_dir='/path/to/nltk_data/')
+#, download_dir='/path/to/nltk_data/'    :: path for percentron
+nltk.download('averaged_perceptron_tagger')
 nltk.download("maxent_ne_chunker")
 nltk.download('words')
 
