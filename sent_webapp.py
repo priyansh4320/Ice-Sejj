@@ -8,6 +8,8 @@ from nltk import word_tokenize, ne_chunk , pos_tag
 nltk.download('averaged_perceptron_tagger')
 nltk.download("maxent_ne_chunker")
 nltk.download('words')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
