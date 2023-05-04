@@ -397,7 +397,6 @@ if nav_selection=="Regression":
 
             
             scores = {
-            'accuracy'  : lr_model.score(pred,testy),
             'MSE_error' : mean_squared_error(testy,pred),
             'MAE_error' : mean_absolute_error(testy,pred),
              
