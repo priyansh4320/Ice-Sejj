@@ -140,11 +140,12 @@ if nav_selection=="Classification":
     class_tab1,class_tab2 = st.tabs(['LOGISTIC REGRESSION','NAIVE BAYES CLASSIFIER'])
 
     with class_tab1:
-        df = []
+        df,df_cols = [],[]
         st.title("Logistic Regression")
         uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
+            df_cols = [i for i in df.columns]
             st.dataframe(df)
         col1,col2,col3,col4 = st.columns(4)
 
@@ -173,19 +174,19 @@ if nav_selection=="Classification":
         st.write("works for only numeric features")
         
 
-        
-        select_feature = st.text_input("enter column name for feature selection(sperator=','  and  no gaps)")
-        target = st.text_input("enter target column name")
-        prediction_data = st.text_input("enter prediction data (seperator = ','  and no gaps)")
+        class_form = st.form(key = 'classification')
+        select_feature = class_form.multiselect("select feature  for Feature Engineering", df_cols)
+        target = class_form.selectbox("select Target ",df_cols)
+        prediction_data = class_form.text_input("enter prediction data  (seperator = ','  and no gaps)")
 
-        train = st.button("Preprocess and train")        
+        train = class_form.form_submit_button(" Preprocess and train LR ")        
         if train:
             if df is not None:
                 df_process = df
             df_process = df_process.dropna()        
             
             if select_feature is not None:
-                df_process = df_process[select_feature.split(",")]
+                df_process = df_process[select_feature]
             else:
                 df_process = df_process
             
@@ -231,11 +232,12 @@ if nav_selection=="Classification":
     pass
 
     with class_tab2:
-        df = []
+        df,df_cols = [],[]
         st.title("Naive Bayes Classifier")
         uploaded_file_naive = st.file_uploader("Upload any CSV file", type=["csv"])
         if uploaded_file_naive is not None:
             df = pd.read_csv(uploaded_file_naive)
+            df_cols = [i for i in df.columns]
             st.dataframe(df)
         ncol1,ncol2,ncol3,ncol4 = st.columns(4)
 
@@ -264,19 +266,19 @@ if nav_selection=="Classification":
         st.write("works for only numeric features")
         
 
-        
-        select_feature = st.text_input("enter column names for feature selection(sperator=','  and  no gaps)")
-        target = st.text_input("enter target name")
-        prediction_data = st.text_input("enter prediction data(seperator = ','  and no gaps)")
+        nform = st.form(key="naive")
+        select_feature = nform.multiselect("select feature  for Feature Engineering", df_cols)
+        target = nform.selectbox("select Target ",df_cols)
+        prediction_data = nform.text_input("enter prediction data  (seperator = ','  and no gaps)")
 
-        train = st.button("Preprocess and train naive")        
+        train = nform.form_submit_button(" Preprocess and train NB ")        
         if train:
             if df is not None:
                 df_process = df
             df_process = df_process.dropna()        
             
             if select_feature is not None:
-                df_process = df_process[select_feature.split(",")]
+                df_process = df_process[select_feature]
             else:
                 df_process = df_process
             
@@ -315,6 +317,7 @@ if nav_selection=="Classification":
         pass
 
 if nav_selection=="Regression":
+    df,df_cols=[],[]
     regr_tab1 = st.tabs(['LINEAR REGRESSION'])
     st.title("Linear Regression")
 
@@ -322,6 +325,7 @@ if nav_selection=="Regression":
         uploaded_file_regr = st.file_uploader("Upload a CSV file", type=["csv"])
         if uploaded_file_regr is not None:
             df = pd.read_csv(uploaded_file_regr)
+            df_cols = [i for i in df.columns]
             st.dataframe(df)
         rcol1,rcol2,rcol3,rcol4 = st.columns(4)
 
@@ -350,19 +354,19 @@ if nav_selection=="Regression":
         st.write("works for only numeric features")
         
 
-        
-        select_feature = st.text_input("enter column names for feature selection (sperator=','  and  no gaps)")
-        target = st.text_input("enter target name")
-        prediction_data = st.text_input("enter prediction data  (seperator = ','  and no gaps)")
+        rform = st.form(key='regression')
+        select_feature = rform.multiselect("select feature  for Feature Engineering", df_cols)
+        target = rform.selectbox("select Target ",df_cols)
+        prediction_data = rform.text_input("enter prediction data  (seperator = ','  and no gaps)")
 
-        train = st.button(" Preprocess and train regr ")        
+        train = rform.form_submit_button(" Preprocess and train regr ")        
         if train:
             if df is not None:
                 df_process = df
             df_process = df_process.dropna()        
             
             if select_feature is not None:
-                df_process = df_process[select_feature.split(",")]
+                df_process = df_process[select_feature]
             else:
                 df_process = df_process
             
