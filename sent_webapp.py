@@ -25,9 +25,13 @@ from sklearn.metrics import accuracy_score,precision_score,recall_score,mean_squ
 # all functions for app
 
 #pipeline for sentiment analysis
-pipe_sentiment = pipeline("sentiment-analysis")
+@st.cache_resource
+def pipe(text):
+    pipe_sentiment = pipeline("sentiment-analysis")
+    return pipe_sentiment(text)
 
 # function to print summary
+@st.cache_resource
 def summer(text, sum_size):
     summarizer = LexRankSummarizer()
     parser = PlaintextParser.from_string(text, Tokenizer("english"))
@@ -37,6 +41,7 @@ def summer(text, sum_size):
     return summary
 
 #Named Entity Recognition Function
+@st.cache_resource
 def ner(text):
     text = word_tokenize(text)
 
@@ -55,6 +60,7 @@ def ner(text):
     return named_entities
 
 #parts of speech Tagging function
+@st.cache_resource
 def postag(text):
     text = word_tokenize(text)
 
@@ -91,7 +97,7 @@ if nav_selection == "NLP":
         result_btn = st.button("Sentiment")
 
         if(result_btn ):
-            sent_result = pipe_sentiment(str(T1_data))
+            sent_result = pipe(str(T1_data))
             st.write(sent_result)
 
     with tab2:
