@@ -217,8 +217,8 @@ if nav_selection=="Classification":
             
             scores = {
             'acc_score' : round(accuracy_score(pred,testy)*100,2),
-            'pre_score' : round(precision_score(pred,testy)*100,2),
-             'recall_score': round(recall_score(pred,testy)*100,2)
+            'pre_score' : round(precision_score(testy,pred)*100,2),
+             'recall_score': round(recall_score(testy,pred)*100,2)
             }
 
             
@@ -308,8 +308,8 @@ if nav_selection=="Classification":
             
             scores = {
             'acc_score' : round(accuracy_score(pred,testy)*100,2),
-            'pre_score' : round(precision_score(pred,testy)*100,2),
-             'recall_score': round(recall_score(pred,testy)*100,2)
+            'pre_score' : round(precision_score(testy,pred)*100,2),
+             'recall_score': round(recall_score(testy,pred)*100,2)
             }
             st.write(scores)
         pass
@@ -393,6 +393,7 @@ if nav_selection=="Regression":
 
             
             scores = {
+            'accuracy'  : lr_model.score(pred,testy),
             'MSE_error' : mean_squared_error(testy,pred),
             'MAE_error' : mean_absolute_error(testy,pred),
              
