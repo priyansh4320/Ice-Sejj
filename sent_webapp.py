@@ -132,6 +132,7 @@ if nav_selection == "NLP":
 
         if(result_btn ):
             st.write(postag(str(T4_data)))
+            st.image("https://m-clark.github.io/text-analysis-with-R/img/POS-Tags.png")
     pass
 
 
