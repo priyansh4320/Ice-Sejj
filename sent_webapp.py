@@ -76,7 +76,7 @@ def postag(text):
 #--------------------------------------------------------------------------------------------------------
 #app
 st.set_page_config(layout="wide")
-st.title("Ice Age")
+st.title("IceAge")
 st.write("A Streamlit Application That Demonstrates Power of Machine Learing.")
 
 with st.sidebar:
